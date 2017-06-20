@@ -25,10 +25,32 @@ router.get('/', (req, res) => {
   res.json({ name: 'yape-api',version: "0.0.1"});
 });
 
-app.use('/api',apiUsers(router,db));
+app.use('/api/users.js',apiUsers(router,db));
 
 const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
   console.log('Server running on port '+port+'!');
 });
+
+
+//HTML-BROWSER
+
+'use strict';
+
+const render = (root) => {
+	root.empty();
+	const wrapper = $('<div class ="wrapper"></div>');
+	wrapper.append(Header());
+	wrapper.append(Usuario(data));
+	root.append(wrapper);
+}
+
+
+$( _ => {
+	getMovies((err,data) => {
+		if(err) console.log(err);
+		const root = $("#root");
+		render(root);
+	});
+})
